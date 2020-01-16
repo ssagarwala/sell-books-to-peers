@@ -1,48 +1,139 @@
 'use strict';
 
-var app = {
-    title: 'Sell Books To Peers',
-    subtitle: 'Sell Books To Peers'
-};
-var user = {
-    name: 'abc',
-    password: 'password',
-    books: ['book1', 'book2', 'book3']
-};
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var getBooks = function getBooks(user) {
-    return user.books.map(function (book) {
-        return React.createElement(
-            'li',
-            { key: book },
-            book
-        );
-    });
-};
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var appJSX = React.createElement(
-    'div',
-    null,
-    React.createElement(
-        'h1',
-        null,
-        app.title
-    ),
-    React.createElement(
-        'h2',
-        null,
-        app.subtitle
-    ),
-    user.password === 'password' && React.createElement(
-        'strong',
-        null,
-        ' Welcome ',
-        user.name,
-        ' '
-    ),
-    user.books.length > 0 ? 'Here are your books' : 'You have no books',
-    getBooks(user)
-);
-var appRoot = document.getElementById('app-root');
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
-ReactDOM.render(appJSX, appRoot);
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var SellBooksToPeers = function (_React$Component) {
+    _inherits(SellBooksToPeers, _React$Component);
+
+    function SellBooksToPeers() {
+        _classCallCheck(this, SellBooksToPeers);
+
+        return _possibleConstructorReturn(this, (SellBooksToPeers.__proto__ || Object.getPrototypeOf(SellBooksToPeers)).apply(this, arguments));
+    }
+
+    _createClass(SellBooksToPeers, [{
+        key: 'render',
+        value: function render() {
+            var title = 'Sell Books To Peers';
+            var subTitle = 'Sell Books To Peers';
+            var books = ['abc', 'def', 'ghi', 'jkl'];
+            return React.createElement(
+                'div',
+                null,
+                React.createElement(Header, { title: title, subTitle: subTitle }),
+                React.createElement(Books, { books: books }),
+                React.createElement(AddBook, null)
+            );
+        }
+    }]);
+
+    return SellBooksToPeers;
+}(React.Component);
+
+var Header = function (_React$Component2) {
+    _inherits(Header, _React$Component2);
+
+    function Header() {
+        _classCallCheck(this, Header);
+
+        return _possibleConstructorReturn(this, (Header.__proto__ || Object.getPrototypeOf(Header)).apply(this, arguments));
+    }
+
+    _createClass(Header, [{
+        key: 'render',
+        value: function render() {
+            return React.createElement(
+                'div',
+                null,
+                this.props.title,
+                this.props.subTitle
+            );
+        }
+    }]);
+
+    return Header;
+}(React.Component);
+
+var Books = function (_React$Component3) {
+    _inherits(Books, _React$Component3);
+
+    function Books() {
+        _classCallCheck(this, Books);
+
+        return _possibleConstructorReturn(this, (Books.__proto__ || Object.getPrototypeOf(Books)).apply(this, arguments));
+    }
+
+    _createClass(Books, [{
+        key: 'render',
+        value: function render() {
+            return React.createElement(
+                'div',
+                null,
+                this.props.books.length,
+                this.props.books.map(function (book) {
+                    return React.createElement(Book, { key: book, bookText: book });
+                })
+            );
+        }
+    }]);
+
+    return Books;
+}(React.Component);
+
+var Book = function (_React$Component4) {
+    _inherits(Book, _React$Component4);
+
+    function Book() {
+        _classCallCheck(this, Book);
+
+        return _possibleConstructorReturn(this, (Book.__proto__ || Object.getPrototypeOf(Book)).apply(this, arguments));
+    }
+
+    _createClass(Book, [{
+        key: 'render',
+        value: function render() {
+            return React.createElement(
+                'div',
+                null,
+                this.props.bookText
+            );
+        }
+    }]);
+
+    return Book;
+}(React.Component);
+
+var AddBook = function (_React$Component5) {
+    _inherits(AddBook, _React$Component5);
+
+    function AddBook() {
+        _classCallCheck(this, AddBook);
+
+        return _possibleConstructorReturn(this, (AddBook.__proto__ || Object.getPrototypeOf(AddBook)).apply(this, arguments));
+    }
+
+    _createClass(AddBook, [{
+        key: 'render',
+        value: function render() {
+            return React.createElement(
+                'div',
+                null,
+                React.createElement(
+                    'button',
+                    null,
+                    ' What should I do ?'
+                )
+            );
+        }
+    }]);
+
+    return AddBook;
+}(React.Component);
+
+ReactDOM.render(React.createElement(SellBooksToPeers, null), document.getElementById('app'));
