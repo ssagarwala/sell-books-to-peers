@@ -11,23 +11,27 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var SellBooksToPeers = function (_React$Component) {
     _inherits(SellBooksToPeers, _React$Component);
 
-    function SellBooksToPeers() {
+    function SellBooksToPeers(props) {
         _classCallCheck(this, SellBooksToPeers);
 
-        return _possibleConstructorReturn(this, (SellBooksToPeers.__proto__ || Object.getPrototypeOf(SellBooksToPeers)).apply(this, arguments));
+        var _this = _possibleConstructorReturn(this, (SellBooksToPeers.__proto__ || Object.getPrototypeOf(SellBooksToPeers)).call(this, props));
+
+        var title = 'Sell Books To Peers';
+        var subTitle = 'Sell Books To Peers';
+        _this.state = {
+            books: ['abc', 'def', 'ghi', 'jkl']
+        };
+        return _this;
     }
 
     _createClass(SellBooksToPeers, [{
         key: 'render',
         value: function render() {
-            var title = 'Sell Books To Peers';
-            var subTitle = 'Sell Books To Peers';
-            var books = ['abc', 'def', 'ghi', 'jkl'];
             return React.createElement(
                 'div',
                 null,
-                React.createElement(Header, { title: title, subTitle: subTitle }),
-                React.createElement(Books, { books: books }),
+                React.createElement(Header, { title: this.title, subTitle: this.subTitle }),
+                React.createElement(Books, { books: this.state.books }),
                 React.createElement(AddBook, null)
             );
         }
@@ -63,18 +67,31 @@ var Header = function (_React$Component2) {
 var Books = function (_React$Component3) {
     _inherits(Books, _React$Component3);
 
-    function Books() {
+    function Books(props) {
         _classCallCheck(this, Books);
 
-        return _possibleConstructorReturn(this, (Books.__proto__ || Object.getPrototypeOf(Books)).apply(this, arguments));
+        var _this3 = _possibleConstructorReturn(this, (Books.__proto__ || Object.getPrototypeOf(Books)).call(this, props));
+
+        _this3.handleRemoveAll = _this3.handleRemoveAll.bind(_this3);
+        return _this3;
     }
 
     _createClass(Books, [{
+        key: 'handleRemoveAll',
+        value: function handleRemoveAll() {
+            console.log(this.props.books);
+        }
+    }, {
         key: 'render',
         value: function render() {
             return React.createElement(
                 'div',
                 null,
+                React.createElement(
+                    'button',
+                    { onClick: this.handleRemoveAll },
+                    'Remove All'
+                ),
                 this.props.books.length,
                 this.props.books.map(function (book) {
                     return React.createElement(Book, { key: book, bookText: book });
@@ -119,11 +136,30 @@ var AddBook = function (_React$Component5) {
     }
 
     _createClass(AddBook, [{
+        key: 'addNewBook',
+        value: function addNewBook(e) {
+            e.preventDefault();
+            var book = e.target.elements.book.value.trim();
+            if (book) {
+                alert(book);
+            }
+        }
+    }, {
         key: 'render',
         value: function render() {
             return React.createElement(
                 'div',
                 null,
+                React.createElement(
+                    'form',
+                    { onSubmit: this.addNewBook },
+                    React.createElement('input', { type: 'text', name: 'book' }),
+                    React.createElement(
+                        'button',
+                        null,
+                        'Add New Book '
+                    )
+                ),
                 React.createElement(
                     'button',
                     null,
