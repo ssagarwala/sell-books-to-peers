@@ -18,6 +18,8 @@ var SellBooksToPeers = function (_React$Component) {
 
         var title = 'Sell Books To Peers';
         var subTitle = 'Sell Books To Peers';
+        _this.handleDeleteAllBooks = _this.handleDeleteAllBooks.bind(_this);
+        _this.handleAddBook = _this.handleAddBook.bind(_this);
         _this.state = {
             books: ['abc', 'def', 'ghi', 'jkl']
         };
@@ -25,14 +27,38 @@ var SellBooksToPeers = function (_React$Component) {
     }
 
     _createClass(SellBooksToPeers, [{
+        key: 'handleAddBook',
+        value: function handleAddBook(book) {
+            if (!book) {
+                return 'Please enter valid book name';
+            } else if (this.state.books.indexOf(book) > -1) {
+                return 'book already exists';
+            }
+            this.setState(function (prevState) {
+                return {
+                    books: prevState.books.concat([book])
+                    //or book: prevState.books.concat(book)
+                };
+            });
+        }
+    }, {
+        key: 'handleDeleteAllBooks',
+        value: function handleDeleteAllBooks() {
+            this.setState(function () {
+                return {
+                    books: []
+                };
+            });
+        }
+    }, {
         key: 'render',
         value: function render() {
             return React.createElement(
                 'div',
                 null,
                 React.createElement(Header, { title: this.title, subTitle: this.subTitle }),
-                React.createElement(Books, { books: this.state.books }),
-                React.createElement(AddBook, null)
+                React.createElement(Books, { books: this.state.books, handleDeleteAllBooks: this.handleDeleteAllBooks }),
+                React.createElement(AddBook, { handleAddBook: this.handleAddBook })
             );
         }
     }]);
@@ -67,21 +93,13 @@ var Header = function (_React$Component2) {
 var Books = function (_React$Component3) {
     _inherits(Books, _React$Component3);
 
-    function Books(props) {
+    function Books() {
         _classCallCheck(this, Books);
 
-        var _this3 = _possibleConstructorReturn(this, (Books.__proto__ || Object.getPrototypeOf(Books)).call(this, props));
-
-        _this3.handleRemoveAll = _this3.handleRemoveAll.bind(_this3);
-        return _this3;
+        return _possibleConstructorReturn(this, (Books.__proto__ || Object.getPrototypeOf(Books)).apply(this, arguments));
     }
 
     _createClass(Books, [{
-        key: 'handleRemoveAll',
-        value: function handleRemoveAll() {
-            console.log(this.props.books);
-        }
-    }, {
         key: 'render',
         value: function render() {
             return React.createElement(
@@ -89,7 +107,7 @@ var Books = function (_React$Component3) {
                 null,
                 React.createElement(
                     'button',
-                    { onClick: this.handleRemoveAll },
+                    { onClick: this.props.handleDeleteAllBooks },
                     'Remove All'
                 ),
                 this.props.books.length,
@@ -129,20 +147,29 @@ var Book = function (_React$Component4) {
 var AddBook = function (_React$Component5) {
     _inherits(AddBook, _React$Component5);
 
-    function AddBook() {
+    function AddBook(props) {
         _classCallCheck(this, AddBook);
 
-        return _possibleConstructorReturn(this, (AddBook.__proto__ || Object.getPrototypeOf(AddBook)).apply(this, arguments));
+        var _this5 = _possibleConstructorReturn(this, (AddBook.__proto__ || Object.getPrototypeOf(AddBook)).call(this, props));
+
+        _this5.handleAddBook = _this5.handleAddBook.bind(_this5);
+        _this5.state = {
+            error: undefined
+        };
+        return _this5;
     }
 
     _createClass(AddBook, [{
-        key: 'addNewBook',
-        value: function addNewBook(e) {
+        key: 'handleAddBook',
+        value: function handleAddBook(e) {
             e.preventDefault();
             var book = e.target.elements.book.value.trim();
-            if (book) {
-                alert(book);
-            }
+            var error = this.props.handleAddBook(book);
+            this.setState(function () {
+                return {
+                    error: error
+                };
+            });
         }
     }, {
         key: 'render',
@@ -152,8 +179,13 @@ var AddBook = function (_React$Component5) {
                 null,
                 React.createElement(
                     'form',
-                    { onSubmit: this.addNewBook },
+                    { onSubmit: this.handleAddBook },
                     React.createElement('input', { type: 'text', name: 'book' }),
+                    this.state.error && React.createElement(
+                        'p',
+                        null,
+                        this.state.error
+                    ),
                     React.createElement(
                         'button',
                         null,
