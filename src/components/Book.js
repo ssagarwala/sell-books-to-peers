@@ -1,7 +1,6 @@
 import React from 'react';
 
-const Book = (props) => {
-    return (
+const Book = (props) => (
         <div>
          {props.bookText}
          <button onClick={(e) =>{
@@ -9,6 +8,4 @@ const Book = (props) => {
              > Delete Book </button>
         </div>
     );
-};
-
 export default Book;

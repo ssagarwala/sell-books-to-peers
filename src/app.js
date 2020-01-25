@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import SellBooksToPeers from './components/SellBooksToPeers';
-
+import  './styles/styles.css'
 ReactDOM.render(<SellBooksToPeers /> , document.getElementById('app'));
 
 

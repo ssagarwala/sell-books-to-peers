@@ -4,13 +4,16 @@ import Header from './Header';
 import AddBook from './AddBook';
 import Books from './Books';
 import Action from './Action';
+import BookModal from './BookModal';
 
 class SellBooksToPeers extends React.Component{
     title = 'Sell Books To Peers';
     subTitle = 'Sell Books To Peers'
     state={
-        books:[]
+        books:[],
+        selectedBook:undefined
     }
+
     
     handleAddBook = (book)=>{
         if(!book){
@@ -28,8 +31,16 @@ class SellBooksToPeers extends React.Component{
     handlePick= () => {
         const randomNumber = Math.floor(Math.random() * this.state.books.length);
         const book = this.state.books[randomNumber];
-        alert(book);
+        this.setState(()=> ({
+            selectedBook: book
+        }));
     };
+    handleClearSelectedBook = () =>{
+       this.setState(() =>({
+        selectedBook: undefined
+       }));
+    };
+
     handleDeleteAllBooks = ()=>{
         this.setState(()=>({ books: [] }));
     };
@@ -43,6 +54,8 @@ class SellBooksToPeers extends React.Component{
                 hasBooks={this.state.books.length > 0}
                 />
                 <AddBook handleAddBook={this.handleAddBook} />
+                <BookModal selectedBook={this.state.selectedBook}  
+                handleClearSelectedBook ={this.handleClearSelectedBook} />
              </div>
         )
     }
@@ -52,7 +65,7 @@ class SellBooksToPeers extends React.Component{
             const objectOfBooks = JSON.parse(stringOfBooks);
             if(objectOfBooks){ //meaning ojectOfBooks not equal to null
                 this.setState(()=>(
-                    {books:jsonOfBooks} ))
+                    {books:objectOfBooks} ))
             }
         }
         catch(e){}
@@ -77,3 +90,4 @@ class SellBooksToPeers extends React.Component{
 }
 
 export default SellBooksToPeers;
+//yar run dev-server

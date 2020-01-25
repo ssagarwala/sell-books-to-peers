@@ -1,8 +1,7 @@
 import React from 'react';
 import Book from './Book';
 
-const Books = (props) => {
-    return (
+const Books = (props) => (
        <div>
        <button onClick={props.handleDeleteAllBooks}>Remove All</button>
         {props.books.length}
@@ -11,7 +10,6 @@ const Books = (props) => {
             <Book key={book} bookText={book}  handleDeleteBook={props.handleDeleteBook}/>)
        }
     </div>
-    )
-}
+    ); 
 
 export default Books;
