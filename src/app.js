@@ -1,7 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import SellBooksToPeers from './components/SellBooksToPeers';
-import  './styles/styles.css'
+import 'normalize.css/normalize.css'; 
+import  './styles/styles.scss';
+ 
 ReactDOM.render(<SellBooksToPeers /> , document.getElementById('app'));
 
 

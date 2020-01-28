@@ -1,0 +1,38 @@
+//Big button
+.big-button{
+    background-color: $purple;
+    border: none;
+    border-bottom: 0.6rem solid darken($purple, 10%);
+    color: white;
+    font-size: $l-size;
+    font-weight: bold;
+    padding: 2.4rem;    
+    margin-bottom: $xl-size;
+    width: 100%;
+}
+
+.big-button:disabled{
+    opacity: 0.5;
+     
+}
+
+//button
+//bem - block elemnet modifier
+//naming convention 
+//modifier we use two hypens
+//we use two underscore for what is inside it. like button__dropdown
+.button{
+    background: $purple;
+    border: none;
+    border-bottom: .3rem solid darken($purple, 10%);
+    color:white;
+    font-weight: 500;
+    padding: $s-size;
+}
+
+.button--link{
+    background:none;
+    border:none;
+    color: $off-white;
+    padding: 0;
+}

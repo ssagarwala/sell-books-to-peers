@@ -22,7 +22,7 @@ class AddBook extends React.Component{
            <form onSubmit={this.handleAddBook}>
            <input type="text" name="book"></input>
            {this.state.error && <p>{this.state.error}</p>}
-           <button>Add New Book </button>
+           <button  className="button">Add New Book </button>
            </form>
 
            </div>

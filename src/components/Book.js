@@ -1,9 +1,11 @@
 import React from 'react';
 
 const Book = (props) => (
-        <div>
+        <div className="book">
          {props.bookText}
-         <button onClick={(e) =>{
+         <button 
+             className="button button--link"
+             onClick={(e) =>{
              props.handleDeleteBook(props.bookText)}}
              > Delete Book </button>
         </div>

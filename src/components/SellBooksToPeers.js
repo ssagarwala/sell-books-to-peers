@@ -48,15 +48,19 @@ class SellBooksToPeers extends React.Component{
         return(
             <div>
                 <Header title={this.title} subTitle={this.subTitle}/>
-                <Books books={this.state.books} handleDeleteAllBooks={this.handleDeleteAllBooks} handleDeleteBook={this.handleDeleteBook}/>
+                <div className="container">
                 <Action 
                 handlePick={this.handlePick}
                 hasBooks={this.state.books.length > 0}
                 />
-                <AddBook handleAddBook={this.handleAddBook} />
+                <div className="widget">
+                    <Books books={this.state.books} handleDeleteAllBooks={this.handleDeleteAllBooks} handleDeleteBook={this.handleDeleteBook}/>
+                    <AddBook handleAddBook={this.handleAddBook} />
+                </div>
                 <BookModal selectedBook={this.state.selectedBook}  
                 handleClearSelectedBook ={this.handleClearSelectedBook} />
-             </div>
+                </div>
+            </div>
         )
     }
     componentDidMount = ()=>{
