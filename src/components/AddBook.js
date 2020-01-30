@@ -19,10 +19,10 @@ class AddBook extends React.Component{
    render(){
        return (
            <div>
-           <form onSubmit={this.handleAddBook}>
-           <input type="text" name="book"></input>
-           {this.state.error && <p>{this.state.error}</p>}
-           <button  className="button">Add New Book </button>
+           {this.state.error && <p className="add-option-error">{this.state.error}</p>}
+           <form className="add-option" onSubmit={this.handleAddBook}>
+             <input className="add-option__input" type="text" name="book"></input>   
+             <button  className="button">Add New Book </button>
            </form>
 
            </div>

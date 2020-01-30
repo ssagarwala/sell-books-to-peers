@@ -6,10 +6,12 @@ const BookModal = (props)  => (
     isOpen={!!props.selectedBook}
     contentLabel="Selected Book"
     onRequestClose = {props.handleClearSelectedBook}
-  >
-  <h1> Selected Book </h1>
-  {props.selectedBook && <p>{props.selectedBook} </p>}
-  <button onClick={props.handleClearSelectedBook}> OK </button>
+    closeTimeoutMS={200}
+    className="modal"
+    >
+  <h3 className="modal__title"> Selected Book </h3>
+  {props.selectedBook && <p className="modal__body">{props.selectedBook} </p>}
+  <button className="button" onClick={props.handleClearSelectedBook}> OK </button>
   </Modal>
 );
 
